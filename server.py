@@ -54,6 +54,7 @@ class Inventory_Managment:
     
     def deleteItem(self, name):
         csv_data = []
+        new_csv_data = []
         existed = False
         count = 0
 
@@ -65,15 +66,17 @@ class Inventory_Managment:
         fields = csv_data.pop(0)
 
         for idx, val in enumerate(csv_data):
+            
             if val[0].lower() == name.lower():
-                csv_data.pop(idx)
                 existed = True
                 count = count + 1
+            else:
+                new_csv_data.append(val)
         
-        csv_data.insert(0, fields)
+        new_csv_data.insert(0, fields)
         with open(self.dblocation,'w') as file:
             writer = csv.writer(file, dialect='excel')
-            writer.writerows(csv_data)
+            writer.writerows(new_csv_data)
 
         if existed: return env.message(ID, "info", str(count) + " item(s) deleted").makeMsgJson()
         else: return env.message(ID, "info", "Item not found").makeMsgJson()
@@ -194,16 +197,6 @@ def main():
                     msg_txt = inv_man.updateItem(item)
                     
                     protocol.send_msg(requester, msg_txt.encode())
-
-                    print(" Done")
-                except Exception as e:
-                    logging.error(traceback.format_exc())
-                    protocol.send_msg(requester, env.message(ID, "error", "Server Failed").makeMsgJson().encode())
-
-            elif msg_obj['type'] == 'view':
-                print(" Sending Item View")
-                try:
-                    inv_man.viewItem(requester)
 
                     print(" Done")
                 except Exception as e:

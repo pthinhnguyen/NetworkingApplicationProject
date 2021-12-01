@@ -1,5 +1,5 @@
 Name,Quantity,Inventory Date
-bmw,1,11/30/2021
+BMW,76,02/17/2021
 Buick,34,05/28/2021
 Cadillac,72,02/04/2021
 Chevrolet,82,08/18/2021
@@ -8,6 +8,7 @@ Dodge,70,11/27/2020
 Ford,24,11/01/2021
 GMC,38,12/26/2020
 Geo,33,04/27/2021
+HONDA,89,12/01/2021
 Isuzu,100,03/16/2021
 Land Rover,98,09/12/2021
 Lexus,45,04/26/2021

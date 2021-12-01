@@ -13,7 +13,6 @@ BUFFER_SIZE = 1024 # 1024 bytes
 # sort_by:          field name to sort
 # update: 
 # delete:
-# view:             print list of item
 # file_received:    file transmitted
 # error:            print error
 # exit:

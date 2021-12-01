@@ -45,9 +45,8 @@ def menu_main():
         "[0] Upload Inventory File", 
         "[1] Delete item",
         "[2] Update item",
-        "[3] View items",
         "",
-        "[4] Exit"
+        "[3] Exit"
     ]
 
     print("---Welcome to Inventory Management---")
@@ -59,7 +58,7 @@ def menu_main():
         try:
             _action = raw_input("Your Action:   ")
             action = int(_action)
-            if (action >= 0 and action <=4): return action
+            if (action >= 0 and action <=3): return action
             else: raise ValueError("Invalid Input")
         except Exception as e:    
             pass
@@ -185,41 +184,8 @@ def main():
             
             print("\n" + msg_obj['body'])
 
-            raw_input("Press any key to continue...")
+            raw_input("Press any key to continue...")  
         elif (action == 3):
-            os.system('cls||clear')
-            protocol.send_msg(requester, env.message(msg_id=ID, msg_type= "view", msg_body = "").makeMsgJson().encode())
-            
-            print("--- Item List ---\n")
-
-            try:
-                count = 0
-
-                msg_byte = protocol.recv_msg(requester)
-                while not msg_byte:
-                    msg_byte = protocol.recv_msg(requester)
-                msg_obj = env.fromJson(str(msg_byte))
-                
-                number_of_row = int(msg_obj['body'])
-
-                while(count < number_of_row):
-                    msg_byte = protocol.recv_msg(requester)
-                    while not msg_byte:
-                        msg_byte = protocol.recv_msg(requester)
-                    row = str(msg_byte)
-                    # row.split()
-
-                    # display_row = str(row[0] + "    " + row[1] + "    " + row[2])
-                    # print(display_row)
-                    print(row)
-
-                    count = count + 1
-                        
-            except Exception as e:
-                pass
-
-            raw_input("\nPress any key to continue...")      
-        elif (action == 4):
             break
         else:
             pass
